@@ -13,6 +13,18 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
   TextEditingController textEditingController = TextEditingController();
 
   @override
+  void initState() { //this is used for initialzing the values
+    super.initState(); //must be the first thing inside the initState() fn
+  }
+
+  @override
+  void dispose() { //used for disposing resources like controllers to prevent the memory leaks
+    textEditingController.dispose();
+
+    super.dispose(); //must be the last thing in the dispose() function
+  }
+
+  @override
   Widget build(BuildContext context) {
     final enabledBorder = OutlineInputBorder(
       borderSide: BorderSide(
@@ -53,8 +65,8 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
           children: [
             Container(
               margin: const EdgeInsets.all(5),
-              child: Text(
-                "${result.toString()} PKR",
+              child:  Text(
+                " PKR ${result != 0 ? result : 0}",
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 45,
